@@ -1,4 +1,6 @@
 
+# Week 3 Assignment 1-2 Campbell, Zachary DSC530
+
 from __future__ import print_function, division
 
 import numpy as np
@@ -7,36 +9,22 @@ import sys
 import nsfg
 import thinkstats2
 
-
+# reads the data and returns a data frame
 def ReadFemResp(dct_file='2002FemResp.dct',
                 dat_file='2002FemResp.dat.gz',
                 nrows=None):
-    """Reads the NSFG respondent data.
-
-    dct_file: string file name
-    dat_file: string file name
-
-    returns: DataFrame
-    """
+  
     dct = thinkstats2.ReadStataDct(dct_file)
     df = dct.ReadFixedWidth(dat_file, compression='gzip', nrows=nrows)
     CleanFemResp(df)
     return df
 
-
+# cleans the data
 def CleanFemResp(df):
-    """Recodes variables from the respondent frame.
-
-    df: DataFrame
-    """
     pass
 
-
+# program to validate the values that are in the data frame by calling the data frame
 def ValidatePregnum(resp):
-    """Validate pregnum in the respondent file.
-
-    resp: respondent DataFrame
-    """
     # read the pregnancy frame
     preg = nsfg.ReadFemPreg()
 
@@ -56,12 +44,8 @@ def ValidatePregnum(resp):
 
     return True
 
-
+# calling all functions with the first imput being script
 def main(script):
-    """Tests the functions in this module.
-
-    script: string script name
-    """
     resp = ReadFemResp()
 
     assert(len(resp) == 7643)
@@ -70,6 +54,6 @@ def main(script):
 
     print('%s: All tests passed.' % script)
 
-
+# setting main
 if __name__ == '__main__':
     main(*sys.argv)
